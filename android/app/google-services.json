@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "114850558410",
+    "project_id": "theo-firebase-0204",
+    "storage_bucket": "theo-firebase-0204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114850558410:android:1b2a9d67cacd00e0e21f33",
+        "android_client_info": {
+          "package_name": "com.example.anotacao_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3BVoi7QJ5WxL79N48jV4y8Zc-io0t2J0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114850558410:android:a6a5bd7ba7854667e21f33",
+        "android_client_info": {
+          "package_name": "com.example.firebase_aula"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3BVoi7QJ5WxL79N48jV4y8Zc-io0t2J0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
