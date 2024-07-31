@@ -13,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         controller: controlador,
-        maxLines: isBody ? null : 1, // Se for o campo do corpo, permita várias linhas
+        maxLines: isBody ? null : 1,
         decoration: InputDecoration(
           fillColor: Colors.white,
           border: OutlineInputBorder(

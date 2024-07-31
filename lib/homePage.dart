@@ -3,6 +3,8 @@ import 'package:anotacao_firebase/database/databaseOperations.dart';
 import 'package:anotacao_firebase/route/appRoutes.dart';
 import 'package:flutter/material.dart';
 
+
+
 class DetalheNotaBottomSheet extends StatelessWidget {
   final Map<String, dynamic> anotacao;
 
@@ -42,6 +44,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final DatabaseOperations _anotacoes = DatabaseOperations();
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +64,9 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.pushNamed(context, AppRoutes.novaAnotacao);
         },
-        child: Icon(Icons.add, color: Colors.white),
+        child: Icon(Icons.add, color: Colors.white, size: 20,),
         backgroundColor: Colors.black,
+
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _anotacoes.getAnotacao(),
@@ -80,6 +85,45 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 final anotacao = snapshot.data![index];
 
+                void _confirmDelete(){
+                  showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: Container(
+                          height: 180,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text('Deseja apagar essa nota?', style: TextStyle(fontSize: 20),),
+                                ),
+                                SizedBox(height: 30,),
+                                Row(
+                                  children: [
+                                    ElevatedButton(onPressed: () async {
+                                      await _anotacoes.excludeAnotacao(anotacao['id']);
+                                      setState(() {
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                        style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.redAccent)),
+                                        child: Text('Apagar', style: TextStyle(color: Colors.white),) ),
+                                    SizedBox(width: 80,),
+                                    ElevatedButton(onPressed: (){
+                                      Navigator.pop(context);
+                                    }, style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.green)) ,child: Text('Cancelar', style: TextStyle(color: Colors.white),))
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                  );
+                }
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -118,6 +162,10 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             child: ListTile(
+/*                              leading: IconButton(icon: Icon(Icons.star_border_outlined), color: Colors.white,
+                              onPressed: (){
+
+                              },),*/
                               title: Center(
                                 child: Text(
                                   anotacao['titulo'],
@@ -131,11 +179,8 @@ class _HomePageState extends State<HomePage> {
                               trailing: IconButton(
                                 icon: Icon(Icons.delete),
                                 color: Colors.red,
-                                onPressed: () async {
-                                  await _anotacoes.excludeAnotacao(anotacao['id']);
-                                  setState(() {
-                                    // Atualiza a lista após exclusão
-                                  });
+                                onPressed: ()  {
+                                  _confirmDelete();
                                 },
                               ),
                             ),
